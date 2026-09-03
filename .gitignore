@@ -1,0 +1,25 @@
+﻿# 运行时数据 - 绝不提交到 Git
+runtime/content/data/
+runtime/content/images/
+runtime/content/logs/
+runtime/.env
+runtime/config.*.json
+runtime/versions/
+runtime/node_modules/
+
+# 依赖
+node_modules/
+npm-debug.log*
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 敏感信息
+*.key
+*.pem
+*.env.local
+
+# 导出文件
+exports/*.json
+!exports/README.md
