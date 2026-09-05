@@ -1,0 +1,94 @@
+{
+    "name": "sdut-blog",
+    "description": "山东理工大学开源软件与新技术课程 - 自定义 Ghost 主题",
+    "demo": "https://example.com",
+    "version": "1.0.0",
+    "engines": {
+        "ghost": ">=5.0.0",
+        "node": ">=22.12.0"
+    },
+    "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
+    "scripts": {
+        "zip": "cd ../.. && zip -r sdut-blog.zip theme/oss-blog-theme -x \"*/node_modules/*\"",
+        "test": "gscan ."
+    },
+    "author": {
+        "name": "SDUT OSS Student",
+        "email": "student@example.com",
+        "url": "https://example.com"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Minimal",
+            "Personal",
+            "Education"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme",
+        "sdut",
+        "blog"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/your-username/sdut-study-myblog"
+    },
+    "config": {
+        "posts_per_page": 8,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1000
+            },
+            "xl": {
+                "width": 2000
+            }
+        },
+        "card_assets": true,
+        "custom": {
+            "show_tag_nav": {
+                "type": "boolean",
+                "default": true,
+                "description": "在导航栏下方显示标签快捷入口"
+            },
+            "show_toc": {
+                "type": "boolean",
+                "default": true,
+                "description": "在文章页显示目录导航"
+            },
+            "show_reading_progress": {
+                "type": "boolean",
+                "default": true,
+                "description": "显示阅读进度条"
+            },
+            "primary_color": {
+                "type": "select",
+                "options": [
+                    "科技蓝",
+                    "活力橙",
+                    "森林绿",
+                    "优雅紫"
+                ],
+                "default": "科技蓝"
+            }
+        }
+    }
+}

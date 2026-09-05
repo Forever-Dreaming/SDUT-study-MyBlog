@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+
+    {{!-- Basic meta - advanced meta is output with {ghost_head} below --}}
+    <title>{{meta_title}}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{!-- Preload critical resources --}}
+    <link rel="preload" as="style" href="{{asset "built/screen.css"}}" />
+    <link rel="preload" as="script" href="{{asset "built/casper.js"}}" />
+
+    {{!-- Theme base styles --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+
+    {{!-- Custom theme styles - SDUT Blog --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/custom.css"}}" />
+
+    {{ghost_head}}
+
+</head>
+<body class="{{body_class}} sdut-theme color-{{@custom.primary_color}}">
+
+{{!-- Reading progress bar --}}
+{{#is "post"}}
+{{#if @custom.show_reading_progress}}
+<div class="reading-progress" id="readingProgress">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+</div>
+{{/if}}
+{{/is}}
+
+<div class="viewport">
+
+    <header id="gh-head" class="gh-head outer">
+        <div class="gh-head-inner inner">
+            <div class="gh-head-brand">
+                <a class="gh-head-logo" href="{{@site.url}}">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}">
+                    {{else}}
+                        {{@site.title}}
+                    {{/if}}
+                </a>
+                <button class="gh-search gh-icon-btn" aria-label="搜索文章" data-ghost-search>{{> "icons/search"}}</button>
+                <button class="gh-burger" aria-label="主菜单"></button>
+            </div>
+
+            <nav class="gh-head-menu">
+                {{navigation}}
+            </nav>
+
+            <div class="gh-head-actions">
+                <button class="gh-search gh-icon-btn" aria-label="搜索文章" data-ghost-search>{{> "icons/search"}}</button>
+                {{#if @site.members_enabled}}
+                    <div class="gh-head-members">
+                        {{#unless @member}}
+                            {{#unless @site.members_invite_only}}
+                                <a class="gh-head-link" href="#/portal/signin" data-portal="signin">登录</a>
+                                <a class="gh-head-button" href="#/portal/signup" data-portal="signup">注册</a>
+                            {{else}}
+                                <a class="gh-head-button" href="#/portal/signin" data-portal="signin">登录</a>
+                            {{/unless}}
+                        {{else}}
+                            <a class="gh-head-button" href="#/portal/account" data-portal="account">账户</a>
+                        {{/unless}}
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+
+        {{!-- Tag navigation bar - SDUT custom feature --}}
+        {{#if @custom.show_tag_nav}}
+        {{#is "home, tag, post, author"}}
+        <div class="tag-nav outer">
+            <div class="inner">
+                <div class="tag-nav-inner">
+                    <span class="tag-nav-label">标签:</span>
+                    {{#get "tags" limit="8" order="count.posts desc" as |top_tags|}}
+                        {{#foreach top_tags}}
+                            <a href="{{url}}" class="tag-nav-item {{#has tag=slug}}active{{/has}}">
+                                <span class="tag-nav-dot"></span>
+                                {{name}}
+                            </a>
+                        {{/foreach}}
+                    {{/get}}
+                </div>
+            </div>
+        </div>
+        {{/is}}
+        {{/if}}
+    </header>
+
+    <div class="site-content">
+        {{{body}}}
+    </div>
+
+    {{!-- Footer - SDUT custom --}}
+    <footer class="site-footer outer sdut-footer">
+        <div class="inner">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <a href="{{@site.url}}" class="footer-title">{{@site.title}}</a>
+                    {{#if @site.description}}
+                        <p class="footer-desc">{{@site.description}}</p>
+                    {{/if}}
+                </div>
+                <div class="footer-right">
+                    <div class="footer-social">
+                        {{#social_accounts @site}}
+                            <a href="{{href}}" target="_blank" rel="noopener" aria-label="{{name}}">
+                                {{#> (concat "icons/" type)}}
+                                    <span>{{name}}</span>
+                                {{/undefined}}
+                            </a>
+                        {{/social_accounts}}
+                    </div>
+                    <nav class="footer-nav">
+                        {{navigation type="secondary"}}
+                    </nav>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{date format="YYYY"}} {{@site.title}} · 基于 Ghost 构建</p>
+                <p class="footer-meta">
+                    <a href="https://github.com/TryGhost/Ghost" target="_blank" rel="noopener">Ghost</a>
+                    · 自定义主题 sdut-blog v1.0
+                    · <a href="/rss/">RSS</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+{{!-- /.viewport --}}
+
+{{#is "post, page"}}
+    {{> "lightbox"}}
+{{/is}}
+
+{{!-- Scripts --}}
+<script src="{{asset "built/casper.js"}}" defer></script>
+
+{{!-- Custom theme scripts - SDUT Blog --}}
+<script src="{{asset "js/custom.js"}}" defer></script>
+
+{{ghost_foot}}
+
+</body>
+</html>

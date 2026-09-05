@@ -1,0 +1,28 @@
+{{!< default}}
+
+{{!-- Tag page --}}
+<div class="site-header-content outer tag-header">
+    <div class="site-header-inner inner">
+        {{#tag}}
+            <h1 class="site-title tag-title">#{{name}}</h1>
+            {{#if description}}
+                <p class="site-description tag-description">{{description}}</p>
+            {{/if}}
+            <p class="tag-count">共 {{../pagination.total}} 篇文章</p>
+        {{/tag}}
+    </div>
+</div>
+
+<main id="site-main" class="site-main outer">
+<div class="inner posts">
+
+    <div class="post-feed sdut-post-feed">
+        {{#foreach posts}}
+            {{> "post-card"}}
+        {{/foreach}}
+    </div>
+
+    {{pagination}}
+
+</div>
+</main>
