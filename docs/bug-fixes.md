@@ -50,3 +50,44 @@
 - **原因**: jsdelivr CDN 在国内访问不稳定，sodo-search 等组件加载失败
 - **影响**: Ghost 原生搜索/评论/会员弹窗功能受限，主题自有功能不受影响
 - **方案**: 生产环境可考虑替换为国内 CDN 或自托管相关资源
+
+## JS 容错优化
+# JS 容错优化说明
+
+## 改动
+
+### safeInit 工具函数
+
+所有功能初始化函数都包裹在 safeInit() 中，确保单个功能出错不会影响其他功能。
+
+`javascript
+function safeInit(fn, name) {
+  try {
+    fn();
+    console.log('[sdut-blog] ' + name + ' initialized');
+  } catch (e) {
+    console.warn('[sdut-blog] ' + name + ' init failed:', e);
+  }
+}
+`
+
+### 多选择器降级方案
+
+目录功能使用 indContentElement() 依次尝试多种选择器，提高兼容性：
+
+`javascript
+function findContentElement() {
+  const selectors = ['.gh-content', '.post-content', '.article-content', 'article'];
+  for (const sel of selectors) {
+    const el = document.querySelector(sel);
+    if (el) return el;
+  }
+  return null;
+}
+`
+
+### 搜索历史多版本兼容
+
+兼容 Ghost 不同版本的搜索组件结构：
+- sodo-search（新版）
+- gh-search（旧版）
