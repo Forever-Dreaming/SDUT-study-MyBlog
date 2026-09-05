@@ -1,0 +1,20 @@
+{{!< default}}
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <section class="error-content">
+            <h1 class="error-code">404</h1>
+            <p class="error-message">抱歉，你访问的页面不存在</p>
+            <p class="error-description">可能是链接错误，或者页面已被移除。</p>
+            <div class="error-actions">
+                <a class="error-link" href="{{@site.url}}">← 返回首页</a>
+                <button class="gh-search gh-icon-btn error-search" data-ghost-search aria-label="搜索">
+                    {{> "icons/search"}}
+                    <span>搜索文章</span>
+                </button>
+            </div>
+        </section>
+
+    </div>
+</main>
