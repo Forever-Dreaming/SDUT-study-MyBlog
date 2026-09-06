@@ -111,3 +111,6 @@ Compress-Archive -Path * -DestinationPath ../sdut-blog.zip
 ## 许可证
 
 MIT License（与上游 Casper 主题一致）
+
+## PR Evidence
+This commit is for pull request demonstration.
