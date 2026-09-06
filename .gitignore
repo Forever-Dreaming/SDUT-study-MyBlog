@@ -1,11 +1,5 @@
 ﻿# 运行时数据 - 绝不提交到 Git
-runtime/content/data/
-runtime/content/images/
-runtime/content/logs/
-runtime/.env
-runtime/config.*.json
-runtime/versions/
-runtime/node_modules/
+runtime/
 
 # 依赖
 node_modules/
@@ -19,13 +13,25 @@ theme/oss-blog-theme/@*/
 theme/oss-blog-theme/*/
 !theme/oss-blog-theme/assets/
 !theme/oss-blog-theme/partials/
-!theme/oss-blog-theme/built/
 !theme/oss-blog-theme/locales/
 
 # 主题目录下的上游 CI 配置（不属于本项目）
 theme/oss-blog-theme/.github/
 theme/oss-blog-theme/renovate.json
 theme/oss-blog-theme/AGENTS.md
+theme/oss-blog-theme/.gitignore
+theme/oss-blog-theme/LICENSE
+
+# 主题根级别的冗余文件（已纳入 assets/ 或 locales/）
+theme/oss-blog-theme/built/
+theme/oss-blog-theme/screenshot-*.jpg
+theme/oss-blog-theme/*.json
+!theme/oss-blog-theme/package.json
+!theme/oss-blog-theme/context.json
+
+# gscan 报告和备份目录
+docs/gscan-report.txt
+exports/backup-*/
 
 # 系统文件
 .DS_Store
