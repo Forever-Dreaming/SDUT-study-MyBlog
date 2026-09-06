@@ -11,6 +11,22 @@ runtime/node_modules/
 node_modules/
 npm-debug.log*
 
+# 主题目录下的 npm 包（flat install 产物）
+theme/oss-blog-theme/.bin/
+theme/oss-blog-theme/.package-lock.json
+theme/oss-blog-theme/pnpm-workspace.yaml
+theme/oss-blog-theme/@*/
+theme/oss-blog-theme/*/
+!theme/oss-blog-theme/assets/
+!theme/oss-blog-theme/partials/
+!theme/oss-blog-theme/built/
+!theme/oss-blog-theme/locales/
+
+# 主题目录下的上游 CI 配置（不属于本项目）
+theme/oss-blog-theme/.github/
+theme/oss-blog-theme/renovate.json
+theme/oss-blog-theme/AGENTS.md
+
 # 系统文件
 .DS_Store
 Thumbs.db

@@ -1,0 +1,33 @@
+{{!< default}}
+
+{{!-- Tags page - 所有标签列表 --}}
+<div class="site-header-content outer tag-header">
+    <div class="site-header-inner inner">
+        <h1 class="site-title tag-title">所有标签</h1>
+        <p class="site-description tag-description">浏览所有文章标签，发现更多感兴趣的内容</p>
+    </div>
+</div>
+
+<main id="site-main" class="site-main outer">
+<div class="inner">
+
+    <div class="sdut-tags-grid">
+        {{#get "tags" limit="50" order="count.posts desc"}}
+            {{#foreach tags}}
+                <a href="{{url}}" class="sdut-tag-card">
+                    <div class="sdut-tag-card-header">
+                        <span class="sdut-tag-card-name">#{{name}}</span>
+                        <span class="sdut-tag-card-count">{{count.posts}} 篇</span>
+                    </div>
+                    {{#if description}}
+                        <p class="sdut-tag-card-desc">{{description}}</p>
+                    {{else}}
+                        <p class="sdut-tag-card-desc sdut-tag-card-desc-empty">暂无描述</p>
+                    {{/if}}
+                </a>
+            {{/foreach}}
+        {{/get}}
+    </div>
+
+</div>
+</main>
